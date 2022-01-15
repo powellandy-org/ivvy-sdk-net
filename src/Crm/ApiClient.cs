@@ -22,6 +22,13 @@ namespace Ivvy.API
             );
         }
 
+        public async Task<ResultOrError<ResultObject>> AddOrUpdateIvvyTaskAsync(IvvyTask ivvyTask)
+        {
+            return await CallAsync<ResultObject>(
+                "crm", "addOrUpdateTask", ivvyTask
+            );
+        }
+
         /// <inheritdoc />
         public async Task<ResultOrError<ResultList<LeadStage>>> GetLeadStageListAsync(
             int perPage,

@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+
 
 namespace Ivvy.API
 {
@@ -82,6 +84,21 @@ namespace Ivvy.API
         {
             return await CallAsync<ResultObject>(
                 "contact", "addOrUpdateCompany", company
+            );
+        }
+
+        public class GroupAddResult {
+            [JsonProperty("contactId")]
+            int contactId {get; set;}
+            [JsonProperty("status")]
+            string status {get; set;}
+        }
+
+        public async Task<ResultOrError<List<GroupAddResult>>> AddContactGroupAsync(object contactGroup)
+        {
+            // KeyValuePair resultsList;
+            return await CallAsync<List<GroupAddResult>>(
+                "contact", "addContactsToSubscriptionGroup", contactGroup
             );
         }
     }
